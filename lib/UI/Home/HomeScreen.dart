@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:islami_app/UI/Home/Settings/settingsTab.dart';
 import 'package:islami_app/UI/Home/hadeth/HadethTab.dart';
 import 'package:islami_app/UI/Home/quran/QuranTab.dart';
 import 'package:islami_app/UI/Home/radio/RadioTab.dart';
 import 'package:islami_app/UI/Home/tasbeeh/TasbehTab.dart';
+import 'package:islami_app/UI/myThemeData.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'home screen';
@@ -17,9 +19,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('assets/images/main_background.png'),
+              image: AssetImage(MyThemeData.isDarkEnabled
+                  ? 'assets/images/dark_background.png'
+                  : 'assets/images/main_background.png'),
               fit: BoxFit.fill)),
       child: Scaffold(
         appBar: AppBar(
@@ -49,6 +53,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 backgroundColor: Theme.of(context).primaryColor,
                 icon: ImageIcon(AssetImage('assets/images/quran.png')),
                 label: 'Quran'),
+            BottomNavigationBarItem(
+                backgroundColor: Theme.of(context).primaryColor,
+                icon: Icon(Icons.settings),
+                label: 'Settings'),
           ],
         ),
         body: tabs[selectedTabIndex],
@@ -61,5 +69,6 @@ class _HomeScreenState extends State<HomeScreen> {
     TasbeehTab(),
     HadethTab(),
     QuranTab(),
+    SettingsTab()
   ];
 }

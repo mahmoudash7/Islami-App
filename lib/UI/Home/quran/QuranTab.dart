@@ -128,6 +128,10 @@ class QuranTab extends StatelessWidget {
             child: Image.asset(
               'assets/images/Quran_header_img.png',
             )),
+        Text(
+          'Chapter Name',
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
         Expanded(
           flex: 3,
           child: ListView.separated(
@@ -137,7 +141,7 @@ class QuranTab extends StatelessWidget {
               separatorBuilder: (context, index) => Container(
                     width: double.infinity,
                     height: 2,
-                    color: Theme.of(context).primaryColor,
+                    color: Theme.of(context).dividerColor,
                     margin: EdgeInsets.symmetric(horizontal: 64),
                   ),
               itemCount: names.length),
