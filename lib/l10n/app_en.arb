@@ -5,5 +5,10 @@
   "tasbeh": "Tasbeh",
   "radio": "Radio",
   "hadeth_number": "Hadeth Number",
-  "chapter_name": "Chapter Name"
+  "chapter_name": "Chapter Name",
+  "settings": "Settings",
+  "theme": "Theme",
+  "language": "Language",
+  "light": "Light",
+  "dark": "Dark"
 }

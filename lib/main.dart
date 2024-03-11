@@ -1,24 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:islami_app/Providers/SettingsProvider.dart';
 import 'package:islami_app/UI/Chapter%20Details/ChapterDetailsScreen.dart';
 import 'package:islami_app/UI/Hadeth%20Detials/HadethDetailsScreen.dart';
 import 'package:islami_app/UI/Home/HomeScreen.dart';
 import 'package:islami_app/UI/Splash%20Screen/splash_screen.dart';
 import 'package:islami_app/UI/myThemeData.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   debugPaintSizeEnabled = false;
-  runApp(myApplication());
+  runApp(ChangeNotifierProvider(
+      create: (buildContext) => SettingsProvider(), child: myApplication()));
 }
 
 class myApplication extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SettingsProvider settingsProvider = Provider.of<SettingsProvider>(context);
     return MaterialApp(
       theme: MyThemeData.lightTheme,
       darkTheme: MyThemeData.DarkTheme,
-      themeMode: ThemeMode.light,
+      themeMode: settingsProvider.currentTheme,
       debugShowCheckedModeBanner: false,
       routes: {
         SplashScreen.routeName: (_) => SplashScreen(),
@@ -32,7 +36,7 @@ class myApplication extends StatelessWidget {
         Locale('en'), // English
         Locale('ar'), // Arabic
       ],
-      locale: Locale('ar'),
+      locale: Locale(settingsProvider.currentLocale),
     );
   }
 }
