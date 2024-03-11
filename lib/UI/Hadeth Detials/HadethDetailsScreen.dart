@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:islami_app/UI/myThemeData.dart';
+import 'package:islami_app/Providers/SettingsProvider.dart';
+import 'package:provider/provider.dart';
 
 import '../Home/hadeth/hadeth.dart';
 
@@ -8,13 +9,12 @@ class HadethDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var settingsProvider = Provider.of<SettingsProvider>(context);
     var args = ModalRoute.of(context)?.settings.arguments as Hadeth;
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage(MyThemeData.isDarkEnabled
-                  ? 'assets/images/dark_background.png'
-                  : 'assets/images/main_background.png'),
+              image: AssetImage(settingsProvider.getBackgroundImage()),
               fit: BoxFit.fill)),
       child: Scaffold(
         appBar: AppBar(
@@ -28,9 +28,9 @@ class HadethDetailsScreen extends StatelessWidget {
                   child: SingleChildScrollView(
                       child: Text(
                         args.content,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                    textAlign: TextAlign.center,
-                  ))),
+                        style: Theme.of(context).textTheme.bodyMedium,
+                        textAlign: TextAlign.center,
+                      ))),
             ),
           ],
         ),
